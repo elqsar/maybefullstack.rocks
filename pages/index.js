@@ -2,18 +2,20 @@ import React from 'react'
 import Link from 'next/link'
 
 const Home = () => (
-  <main className="container h-full">
-    <div className="flex flex-col items-center justify-center h-full">
-      <h2 className="text-2xl font-bold tracking-wide uppercase">
+  <main>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h2 className="text-3xl font-bold tracking-wide uppercase">
         Maybefullstack
       </h2>
-      <div>
-        <h3>Profiles</h3>
+      <div className="flex">
         <Link href="/profile/vera">
-          <a>Vera's profile</a>
+          <a className="flex-1 absolute left-0 ml-8 md:ml-32 mt-10 text-lg uppercase">Vera</a>
         </Link>
         <Link href="/profile/boris">
-          <a>Boris' profile</a>
+          <a className="flex-1 absolute right-0 mr-8 md:mr-32 mt-10 text-lg uppercase">
+            <span>
+
+            </span>Boris</a>
         </Link>
       </div>
     </div>
