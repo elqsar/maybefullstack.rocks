@@ -1,0 +1,20 @@
+{
+  "vera": {
+    "name": "Vera Kasperova",
+    "projects": 5,
+    "jobs": 2,
+    "references": 3,
+    "location": "Prague, Czech Republic",
+    "description": "An UI/UX expert with passion for clean design and great UX",
+    "techstack": "UI/UX, React, React Native"
+  },
+  "boris": {
+    "name": "Boris Musatov",
+    "projects": 5,
+    "jobs": 2,
+    "references": 3,
+    "location": "Prague, Czech Republic",
+    "description": "Full stack developer with passion for clean code and simple but effective solutions",
+    "techstack": "Java, Node.js, AWS, React, React Native"
+  }
+}

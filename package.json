@@ -8,11 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.4.0",
-    "postcss-nesting": "7.0.1",
-    "tailwindcss": "1.4.6",
+    "@fortawesome/fontawesome-free": "5.13.0",
     "autoprefixer": "9.7.6",
+    "next": "9.4.0",
+    "next-compose-plugins": "2.2.0",
+    "next-optimized-images": "2.6.0",
+    "postcss-nesting": "7.0.1",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "tailwindcss": "1.4.6"
   }
 }
