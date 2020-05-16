@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const Home = () => (
   <main>
@@ -8,18 +8,25 @@ const Home = () => (
         Maybefullstack
       </h2>
       <div className="flex">
-        <Link href="/profile/vera">
-          <a className="flex-1 absolute left-0 ml-8 md:ml-32 mt-10 text-lg uppercase">Vera</a>
+        <Link
+          href={{ pathname: "/profile/[name]" }}
+          as={{ pathname: "/profile/vera" }}
+        >
+          <a className="flex-1 absolute left-0 ml-8 md:ml-32 mt-10 text-lg uppercase">
+            Vera
+          </a>
         </Link>
-        <Link href="/profile/boris">
+        <Link
+          href={{ pathname: "/profile/[name]" }}
+          as={{ pathname: "/profile/boris" }}
+        >
           <a className="flex-1 absolute right-0 mr-8 md:mr-32 mt-10 text-lg uppercase">
-            <span>
-
-            </span>Boris</a>
+            <span></span>Boris
+          </a>
         </Link>
       </div>
     </div>
   </main>
-)
+);
 
-export default Home
+export default Home;
