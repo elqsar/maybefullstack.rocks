@@ -147,7 +147,8 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { name: "boris" }, params: { name: "vera" } }, // See the "paths" section below
+      { params: { name: "boris" } },
+      { params: { name: "vera" } }, // See the "paths" section below
     ],
     fallback: false,
   };
