@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 
 const profileData = {
   vera: {
@@ -10,6 +9,7 @@ const profileData = {
     location: "Prague, Czech Republic",
     description: "An UI/UX expert with passion for clean design and great UX.",
     techstack: "UI/UX, React, React Native",
+    imageName: "vera",
   },
   boris: {
     name: "Boris Musatov",
@@ -20,12 +20,11 @@ const profileData = {
     description:
       "Full stack developer with passion for clean code and simple but effective solutions.",
     techstack: "Java, Node.js, AWS, React, React Native",
+    imageName: "boris",
   },
 };
 
-const Profile = () => {
-  const router = useRouter();
-  const { name = "vera" } = router.query;
+const Profile = ({ profileInfo }) => {
   const {
     name: fullName,
     jobs,
@@ -34,7 +33,8 @@ const Profile = () => {
     location,
     description,
     techstack,
-  } = profileData[name];
+    imageName,
+  } = profileInfo;
 
   return (
     <main className="profile-page">
@@ -53,7 +53,7 @@ const Profile = () => {
                   <div className="relative">
                     <img
                       alt="..."
-                      src={require(`../../assets/${name}.jpg`)}
+                      src={require(`../../assets/${imageName}.jpg`)}
                       className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                       style={{ maxWidth: "150px" }}
                     />
@@ -88,7 +88,7 @@ const Profile = () => {
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                        3
+                        {references}
                       </span>
                       <span className="text-sm text-gray-500">References</span>
                     </div>
@@ -136,3 +136,19 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export async function getStaticProps(context) {
+  const response = { profileInfo: profileData[context.params.name] };
+  return {
+    props: { profileInfo: profileData[context.params.name] },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { name: "boris" }, params: { name: "vera" } }, // See the "paths" section below
+    ],
+    fallback: false,
+  };
+}
