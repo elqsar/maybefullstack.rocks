@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 
 const profileData = {
   vera: {
@@ -8,7 +8,7 @@ const profileData = {
     references: 3,
     location: "Prague, Czech Republic",
     description: "An UI/UX expert with passion for clean design and great UX.",
-    techstack: "UI/UX, React, React Native",
+    techStack: "UI/UX, React, React Native",
     imageName: "vera",
   },
   boris: {
@@ -19,23 +19,32 @@ const profileData = {
     location: "Prague, Czech Republic",
     description:
       "Full stack developer with passion for clean code and simple but effective solutions.",
-    techstack: "Java, Node.js, AWS, React, React Native",
+    techStack: "Java, Node.js, AWS, React, React Native",
     imageName: "boris",
   },
 };
 
-const Profile = ({ profileInfo }) => {
-  const {
-    name: fullName,
-    jobs,
-    projects,
-    references,
-    location,
-    description,
-    techstack,
-    imageName,
-  } = profileInfo;
+interface ProfileProps {
+  name: string;
+  jobs: string[];
+  projects: string[];
+  references: string[];
+  location: string;
+  description: string;
+  techStack?: string;
+  imageName?: string;
+}
 
+const Profile: React.FC<ProfileProps> = ({
+  name: fullName,
+  jobs,
+  projects,
+  references,
+  location,
+  description,
+  imageName,
+  techStack,
+}) => {
   return (
     <main className="profile-page">
       <section className="relative block" style={{ height: "500px" }}>
@@ -105,7 +114,7 @@ const Profile = ({ profileInfo }) => {
                 </div>
                 <div className="mb-2 text-gray-700 mt-10">
                   <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                  {techstack}
+                  {techStack}
                 </div>
                 <div className="mb-2 text-gray-700">
                   <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
@@ -140,7 +149,7 @@ export default Profile;
 export async function getStaticProps(context) {
   const response = { profileInfo: profileData[context.params.name] };
   return {
-    props: { profileInfo: profileData[context.params.name] },
+    props: { ...profileData[context.params.name] },
   };
 }
 
