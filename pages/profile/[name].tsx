@@ -26,9 +26,9 @@ const profileData = {
 
 interface ProfileProps {
   name: string;
-  jobs: string[];
-  projects: string[];
-  references: string[];
+  jobs: string;
+  projects: string;
+  references: string;
   location: string;
   description: string;
   techStack?: string;
