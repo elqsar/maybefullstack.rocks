@@ -1,0 +1,7 @@
+.main_layout {
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  height: 100vh;
+  width: 100%;
+}
