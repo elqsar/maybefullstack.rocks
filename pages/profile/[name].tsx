@@ -53,7 +53,7 @@ const Profile: React.FC<ProfileProps> = ({
           style={{ height: "70px", transform: "translateZ(0)" }}
         ></div>
       </section>
-      <section className="relative py-16 bg-gray-300">
+      <section className="relative py-2 md:py-16 bg-gray-300">
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
@@ -69,7 +69,7 @@ const Profile: React.FC<ProfileProps> = ({
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                  <div className="py-6 px-3 mt-32 sm:mt-0">
+                  <div className="py-6 flex justify-center px-3 mt-32 sm:mt-0">
                     <button
                       className="bg-blue-400 active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                       type="button"
