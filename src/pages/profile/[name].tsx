@@ -13,7 +13,7 @@ interface ProfileProps {
   location: string;
   description: string;
   techStack?: string;
-  imageName?: string;
+  imagename?: string;
 }
 
 const Profile: React.FC<ProfileDataProps> = ({
@@ -24,7 +24,7 @@ const Profile: React.FC<ProfileDataProps> = ({
     references,
     location,
     description,
-    imageName,
+    imagename,
     techStack,
   },
 }) => {
@@ -45,7 +45,7 @@ const Profile: React.FC<ProfileDataProps> = ({
                   <div className="relative">
                     <img
                       alt="..."
-                      src={require(`../../assets/${imageName}.jpg`)}
+                      src={require(`../../assets/${imagename}.jpg`)}
                       className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                       style={{ maxWidth: "150px" }}
                     />
@@ -139,6 +139,7 @@ const DETAIL_QUERY = `query DetailQuery($pattern: String!) {
     projects
     description
     techstack
+    imagename
     name
   }
 }`;
@@ -149,8 +150,10 @@ export async function getStaticProps(context) {
     variables: { pattern: context.params.name },
     preview: false,
   });
+
   return {
-    props: { data },
+    props: { profile: data.profile },
+    revalidate: 30
   };
 }
 
