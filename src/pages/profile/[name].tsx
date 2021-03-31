@@ -151,6 +151,8 @@ export async function getStaticProps(context) {
     preview: false,
   });
 
+    console.log(' *** Data ***', JSON.stringify(data))
+
   return {
     props: { profile: data.profile },
     revalidate: 30
