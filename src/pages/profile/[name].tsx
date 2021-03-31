@@ -152,7 +152,8 @@ export async function getStaticProps(context) {
   });
 
   return {
-    props: { profile: data.profile }
+    props: { profile: data.profile },
+    revalidate: 30,
   };
 }
 
