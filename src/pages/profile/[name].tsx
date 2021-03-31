@@ -1,28 +1,9 @@
 import * as React from "react";
+import { request } from "../../lib/datocms";
 
-const profileData = {
-  vera: {
-    name: "Vera Kasperova",
-    projects: 5,
-    jobs: 2,
-    references: 3,
-    location: "Prague, Czech Republic",
-    description: "An UI/UX expert with passion for clean design and great UX.",
-    techStack: "UI/UX, React, React Native",
-    imageName: "vera",
-  },
-  boris: {
-    name: "Boris Musatov",
-    projects: 5,
-    jobs: 2,
-    references: 3,
-    location: "Prague, Czech Republic",
-    description:
-      "Full stack developer with passion for clean code and simple but effective solutions.",
-    techStack: "Java, Node.js, AWS, React, React Native",
-    imageName: "boris",
-  },
-};
+interface ProfileDataProps {
+  profile: ProfileProps;
+}
 
 interface ProfileProps {
   name: string;
@@ -35,15 +16,17 @@ interface ProfileProps {
   imageName?: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({
-  name: fullName,
-  jobs,
-  projects,
-  references,
-  location,
-  description,
-  imageName,
-  techStack,
+const Profile: React.FC<ProfileDataProps> = ({
+  profile: {
+    name: fullName,
+    jobs,
+    projects,
+    references,
+    location,
+    description,
+    imageName,
+    techStack,
+  },
 }) => {
   return (
     <main className="profile-page">
@@ -146,10 +129,28 @@ const Profile: React.FC<ProfileProps> = ({
 
 export default Profile;
 
+const DETAIL_QUERY = `query DetailQuery($pattern: String!) {
+  profile(filter: {name: {matches: {pattern: $pattern}}}) {
+    description
+    id
+    jobs
+    location
+    references
+    projects
+    description
+    techstack
+    name
+  }
+}`;
+
 export async function getStaticProps(context) {
-  const response = { profileInfo: profileData[context.params.name] };
+  const data = await request({
+    query: DETAIL_QUERY,
+    variables: { pattern: context.params.name },
+    preview: false,
+  });
   return {
-    props: { ...profileData[context.params.name] },
+    props: { data },
   };
 }
 
