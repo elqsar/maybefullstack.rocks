@@ -1,28 +1,9 @@
 import * as React from "react";
+import { request } from "../../lib/datocms";
 
-const profileData = {
-  vera: {
-    name: "Vera Kasperova",
-    projects: 5,
-    jobs: 2,
-    references: 3,
-    location: "Prague, Czech Republic",
-    description: "An UI/UX expert with passion for clean design and great UX.",
-    techStack: "UI/UX, React, React Native",
-    imageName: "vera",
-  },
-  boris: {
-    name: "Boris Musatov",
-    projects: 5,
-    jobs: 2,
-    references: 3,
-    location: "Prague, Czech Republic",
-    description:
-      "Full stack developer with passion for clean code and simple but effective solutions.",
-    techStack: "Java, Node.js, AWS, React, React Native",
-    imageName: "boris",
-  },
-};
+interface ProfileDataProps {
+  profile: ProfileProps;
+}
 
 interface ProfileProps {
   name: string;
@@ -32,18 +13,20 @@ interface ProfileProps {
   location: string;
   description: string;
   techStack?: string;
-  imageName?: string;
+  imagename?: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({
-  name: fullName,
-  jobs,
-  projects,
-  references,
-  location,
-  description,
-  imageName,
-  techStack,
+const Profile: React.FC<ProfileDataProps> = ({
+  profile: {
+    name: fullName,
+    jobs,
+    projects,
+    references,
+    location,
+    description,
+    imagename,
+    techStack,
+  },
 }) => {
   return (
     <main className="profile-page">
@@ -62,7 +45,7 @@ const Profile: React.FC<ProfileProps> = ({
                   <div className="relative">
                     <img
                       alt="..."
-                      src={require(`../../assets/${imageName}.jpg`)}
+                      src={require(`../../assets/${imagename}.jpg`)}
                       className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                       style={{ maxWidth: "150px" }}
                     />
@@ -146,10 +129,31 @@ const Profile: React.FC<ProfileProps> = ({
 
 export default Profile;
 
+const DETAIL_QUERY = `query DetailQuery($pattern: String!) {
+  profile(filter: {name: {matches: {pattern: $pattern}}}) {
+    description
+    id
+    jobs
+    location
+    references
+    projects
+    description
+    techstack
+    imagename
+    name
+  }
+}`;
+
 export async function getStaticProps(context) {
-  const response = { profileInfo: profileData[context.params.name] };
+  const data = await request({
+    query: DETAIL_QUERY,
+    variables: { pattern: context.params.name },
+    preview: false,
+  });
+
   return {
-    props: { ...profileData[context.params.name] },
+    props: { profile: data.profile },
+    revalidate: 30,
   };
 }
 
