@@ -44,8 +44,8 @@ const Profile: React.FC<ProfileDataProps> = ({
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className="relative">
                     <img
-                      alt="..."
-                      src={require(`../../assets/${imagename}.jpg`)}
+                      alt="Profile image"
+                      src={`/images/${imagename}.jpg`}
                       className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                       style={{ maxWidth: "150px" }}
                     />
@@ -109,13 +109,6 @@ const Profile: React.FC<ProfileDataProps> = ({
                     <p className="mb-4 text-lg leading-relaxed text-gray-800">
                       {description}
                     </p>
-                    {/*<a*/}
-                    {/*  href="#pablo"*/}
-                    {/*  className="font-normal text-pink-500"*/}
-                    {/*  onClick={e => e.preventDefault()}*/}
-                    {/*>*/}
-                    {/*  Show more*/}
-                    {/*</a>*/}
                   </div>
                 </div>
               </div>
